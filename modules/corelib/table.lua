@@ -113,17 +113,21 @@ function table.haskey(t, key)
   return table.findkey(t, key) ~= nil
 end
 
-function table.removevalue(t, value, all)
+function table.removevalue(t, value, all, force)
   for k,v in pairs(t) do
     if v == value then
-      table.remove(t, k)
-      if not all then
-        return true
+      if force then
+        t[k] = nil
+      else
+        table.remove(t, k)
+        if not all then
+          return true
+        end
       end
     end
   end
 
-  if all then
+  if not force and all then
     return true
   end
   return false

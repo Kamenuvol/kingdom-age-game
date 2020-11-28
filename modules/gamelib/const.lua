@@ -161,7 +161,7 @@ GamePurseSlot = 21
 GameFormatCreatureName = 22
 GameSpellList = 23
 GameClientPing = 24
-GameExtendedClientPing = 25
+-- 25 free
 GameDoubleHealth = 26
 GameDoubleSkills = 27
 GameChangeMapAwareRange = 28

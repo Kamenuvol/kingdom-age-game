@@ -209,7 +209,7 @@ function GamePartyList.init()
   GamePartyList.onClickFilterWizardPlayers(filterWizardPlayersButton)
   GamePartyList.onClickFilterBardPlayers(filterBardPlayersButton)
 
-  ProtocolGame.registerOpcode(GameServerOpcodes.GameServerPartyList, GamePartyList.parsePartyList)
+  ProtocolGame.registerOpcode(ServerOpcodes.ServerOpcodePartyList, GamePartyList.parsePartyList)
 
   connect(Creature, {
     -- onShieldChange = GamePartyList.onShieldChange,
@@ -245,7 +245,7 @@ function GamePartyList.terminate()
     onWalk         = GamePartyList.onWalk,
   })
 
-  ProtocolGame.unregisterOpcode(GameServerOpcodes.GameServerPartyList)
+  ProtocolGame.unregisterOpcode(ServerOpcodes.ServerOpcodePartyList)
 
   -- Window
 
@@ -363,15 +363,18 @@ function GamePartyList.add(data, isInvitee)
     end
   end
 
+  local localPlayer = g_game.getLocalPlayer()
+
   local button = g_ui.createWidget('PartyButton')
   button:setup(data)
+
+  if cid ~= localPlayer:getId() and not isInvitee and button.creatureTypeId == CreatureTypePlayer then
+    button:enableCreatureMinimapWidget()
+  end
 
   -- -- Callback
   -- button.onMouseRelease                               = GamePartyList.onButtonMouseRelease
   -- button:getChildById('positionLabel').onMouseRelease = GamePartyList.onButtonMouseRelease -- Because it has tooltip (phantom false)
-
-  -- Register first time creature adding
-  button.lastAppear = os.time()
 
   -- Hide widgets that is not updated as being invitee button
   if isInvitee then
@@ -1192,10 +1195,13 @@ local clientSignals =
   -- -- Use GamePartyList.sendPartyList(GamePartyList.m.PARTYLIST_CLIENTSIGNAL_REQUESTPOSITIONS) to send it
   -- [PARTYLIST_CLIENTSIGNAL_REQUESTPOSITIONS] = function(params) -- Example
   --   local protocolGame = g_game.getProtocolGame()
+  --   if not protocolGame then
+  --     return
+  --   end
 
   --   local msg = OutputMessage.create()
-  --   msg:addU8(ClientOpcodes.ClientPartyList)
-  --   msg:addU8(PARTYLIST_CLIENTSIGNAL_REQUESTPOSITIONS)
+  --   msg:addU8(ClientOpcodes.ClientOpcodePartyList)
+  --   msg:addU8(PARTYLIST_CLIENTSIGNAL_REQUESTPOSITIONS) -- U8 for opcode, U16 for extended opcode
   --   msg:addDouble(107.56789012345, 4) -- 107.5678
   --   protocolGame:send(msg)
   -- end,
