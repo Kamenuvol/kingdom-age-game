@@ -31,6 +31,7 @@ function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
     local deltaTime = (g_clock.millis() - startTime) / 1000
     local avgSpeed = receivedBytes / deltaTime
     print(string.format("%d%% %.2f B/s", percent, avgSpeed))
+    print("deltaTime:" .. deltaTime .. ", receivedBytes:" .. receivedBytes)
 end
 
 function ClientUpdater.onUpdateEnd()
