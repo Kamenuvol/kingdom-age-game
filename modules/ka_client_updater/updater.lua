@@ -27,8 +27,8 @@ function ClientUpdater.onUpdateStart()
 end
 
 function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
-    local percent = math.ceil(receivedObj/totalObj)
-    local deltaTime = g_clock.millis() - startTime
+    local percent = (receivedObj/totalObj) * 100
+    local deltaTime = (g_clock.millis() - startTime) / 1000
     local avgSpeed = receivedBytes / deltaTime
     print(string.format("%d%% %.2f B/s", percent, avgSpeed))
 end
