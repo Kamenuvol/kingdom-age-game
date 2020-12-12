@@ -102,8 +102,6 @@ function Client.startup()
     local errmsg = tr('No graphics card detected. Everything will be drawn using the CPU,\nthus the performance will be really bad.\nUpdate your graphics driver to have a better performance.')
     displayErrorBox(errtitle, errmsg)
   end
-
-  g_updater.checkUpdates()
 end
 
 function Client.exit()
