@@ -35,6 +35,7 @@ function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
 end
 
 function ClientUpdater.onUpdateEnd()
-    g_platform.spawnProcess("Kingdom Age Online.exe", { })
-    exit()
+    print_r("Update end, please restart")
+    --g_platform.spawnProcess("Kingdom Age Online.exe", { })
+    --exit()
 end
