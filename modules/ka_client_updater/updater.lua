@@ -38,5 +38,5 @@ function ClientUpdater.onUpdateEnd()
         g_platform.spawnProcess("Kingdom Age Online.exe", { })
         exit()
     end
-    displayOkCancelBox(tr("Your client has been updated. Click OK to restart the client."), message, callback)
+    displayOkCancelBox(tr("Info"), tr("Your client has been updated. Click OK to restart the client."), callback)
 end
