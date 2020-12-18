@@ -29,13 +29,14 @@ end
 function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
     local percent = (receivedObj/totalObj) * 100
     local deltaTime = (g_clock.millis() - startTime) / 1000
-    local avgSpeed = receivedBytes / deltaTime
-    print(string.format("%d%% %.2f B/s", percent, avgSpeed))
-    print("deltaTime:" .. deltaTime .. ", receivedBytes:" .. receivedBytes)
+    local avgSpeed = receivedBytes / 1024 / deltaTime
+    print(string.format("%d%% %.2f kB/s", percent, avgSpeed))
 end
 
 function ClientUpdater.onUpdateEnd()
-    print_r("Update end, please restart")
-    --g_platform.spawnProcess("Kingdom Age Online.exe", { })
-    --exit()
+    local callback = function()
+        g_platform.spawnProcess("Kingdom Age Online.exe", { })
+        exit()
+    end
+    displayOkCancelBox(tr("Your client has been updated. Click OK to restart the client."), message, callback)
 end
