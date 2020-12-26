@@ -42,7 +42,7 @@ function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
     local receivedMB = receivedBytes / 1024 / 1024
 
     updaterWindow:getChildById('topText'):setText(string.format('Downloading: %s of %s files', tostring(receivedObj):comma(), tostring(totalObj):comma()))
-    updaterWindow:getChildById('bottomText'):setText(string.format('Received: %.2f MB (%.2f %s/s)', receivedMB, avgSpeed < 1024 and avgSpeed or avgSpeed / 1024, avgSpeed < 1024 and "kB" or "MB")
+    updaterWindow:getChildById('bottomText'):setText(string.format('Received: %.2f MB (%.2f %s/s)', receivedMB, avgSpeed < 1024 and avgSpeed or avgSpeed / 1024, avgSpeed < 1024 and "kB" or "MB"))
     updaterWindow:getChildById('rightText'):setText(string.format('%.2f%%', percent))
     updaterWindow:getChildById('bar'):setPercent(percent)
 end
