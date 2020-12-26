@@ -39,6 +39,7 @@ end
 function ClientUpdater.onUpdateStart()
     startTime = g_clock.millis()
     updaterWindow:show()
+    updaterWindow:getChildById('topText'):setText('Starting...')
 end
 
 function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
