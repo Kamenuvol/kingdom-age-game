@@ -48,5 +48,5 @@ UIWidget
     color: #f0f0f0
     anchors.verticalCenter: emptyBar.verticalCenter
     anchors.right: emptyBar.right
-    //margin-right: 29
+    margin-right: 29
     text-horizontal-auto-resize: true
