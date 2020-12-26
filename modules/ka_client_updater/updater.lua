@@ -8,6 +8,7 @@ function ClientUpdater.init()
     ClientUpdater.m = modules.ka_client_updater
 
     connect(g_updater, {
+        onUpdated        = ClientUpdater.onUpdated,
         onUpdateStart    = ClientUpdater.onUpdateStart,
         onUpdateProgress = ClientUpdater.onUpdateProgress,
         onUpdateEnd      = ClientUpdater.onUpdateEnd,
@@ -19,6 +20,7 @@ end
 
 function ClientUpdater.terminate()
     disconnect(g_updater, {
+        onUpdated        = ClientUpdater.onUpdated,
         onUpdateStart    = ClientUpdater.onUpdateStart,
         onUpdateProgress = ClientUpdater.onUpdateProgress,
         onUpdateEnd      = ClientUpdater.onUpdateEnd,
@@ -28,6 +30,10 @@ function ClientUpdater.terminate()
     updaterWindow = nil
 
     _G.ClientUpdater = nil
+end
+
+function ClientUpdater.onUpdated()
+    updaterWindow:hide()
 end
 
 function ClientUpdater.onUpdateStart()
