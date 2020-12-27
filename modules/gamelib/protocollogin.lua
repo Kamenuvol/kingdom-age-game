@@ -113,7 +113,7 @@ function ProtocolLogin:sendLoginPacket()
     for i = 1, paddingBytes do
       msg:addU8(math.random(0, 0xff))
     end
-    msg:addString(g_updater.getClientVersion())
+
     msg:encryptRsa()
   end
 
