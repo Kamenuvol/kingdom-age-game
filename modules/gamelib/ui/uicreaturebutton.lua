@@ -37,6 +37,8 @@ function UICreatureButton.create()
   button.specialIconId  = SpecialIconNone
   button.vocationId     = VocationLearner -- Player only
 
+  button.masterCid      = 0 -- Summon only (updated manually)
+
   button.isHovered  = false
   button.isTarget   = false
   button.isFollowed = false

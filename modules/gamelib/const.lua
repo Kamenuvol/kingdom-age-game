@@ -51,6 +51,23 @@ ShieldStr[ShieldBlueNoSharedExpBlink] = ShieldStr[ShieldBlue]
 ShieldStr[ShieldYellowNoSharedExpBlink] = ShieldStr[ShieldYellow]
 ShieldStr[ShieldBlueNoSharedExp] = ShieldStr[ShieldBlue]
 ShieldStr[ShieldYellowNoSharedExp] = ShieldStr[ShieldYellow]
+ShieldHierarchy = -- From most to less important
+{
+  [ShieldYellow]                 = 1,
+  [ShieldYellowSharedExp]        = 2,
+  [ShieldYellowNoSharedExpBlink] = 3,
+  [ShieldYellowNoSharedExp]      = 4,
+  [ShieldWhiteYellow]            = 5,
+
+  [ShieldBlue]                   = 6,
+  [ShieldBlueSharedExp]          = 7,
+  [ShieldBlueNoSharedExpBlink]   = 8,
+  [ShieldBlueNoSharedExp]        = 9,
+  [ShieldWhiteBlue]              = 10,
+
+  [ShieldGray]                   = 11,
+  [ShieldNone]                   = 12,
+}
 
 EmblemNone = 0
 EmblemGreen = 1
